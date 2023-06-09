@@ -11,6 +11,7 @@ namespace Core.Entities
 		public string DoseControl { get; set; }
 		public double Speed { get; set; }
 		public bool IsMedical { get; set; }
+		public decimal Price { get; set; }
 		public ProductCompany ProductCompany { get; set; }
 		public int ProductCompanyId { get; set; }
 	}
