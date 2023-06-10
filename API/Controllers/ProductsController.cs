@@ -12,10 +12,10 @@ namespace API.Controllers
 		private readonly IGenericRepository<ProductCompany> _productCompanyRepo;
 
 		public ProductsController(IGenericRepository<Product> productRepo,
-		IGenericRepository<ProductCompany> productBrandRepo)
+		IGenericRepository<ProductCompany> productCompanyRepo)
 		{
 			_productRepo = productRepo;
-			_productCompanyRepo = productBrandRepo;
+			_productCompanyRepo = productCompanyRepo;
 		}
 
 		[HttpGet]
