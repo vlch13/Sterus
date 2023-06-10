@@ -6,15 +6,17 @@ namespace Infrastructure.Data
 {
 	public class ProductRepository : IProductRepository
 	{
-      private readonly DataContext _context;
+		private readonly DataContext _context;
 		public ProductRepository(DataContext context)
 		{
-         _context = context;
+			_context = context;
 		}
 
 		public async Task<Product> GetProductByIdAsync(int id)
 		{
-			return await _context.Products.FindAsync(id);
+			return await _context.Products
+			.Include(p => p.ProductCompany)
+			.FirstOrDefaultAsync(p => p.Id == id);
 		}
 
 		public async Task<IReadOnlyList<ProductCompany>> GetProductCompaniesAsync()
@@ -24,7 +26,9 @@ namespace Infrastructure.Data
 
 		public async Task<IReadOnlyList<Product>> GetProductsAsync()
 		{
-			return await _context.Products.ToListAsync();
+			return await _context.Products
+			.Include(p => p.ProductCompany)
+			.ToListAsync();
 		}
 	}
 }
