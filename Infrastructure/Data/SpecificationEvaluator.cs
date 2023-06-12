@@ -25,6 +25,11 @@ namespace Infrastructure.Data
 			{
 				quary = quary.OrderByDescending(spec.OrderByDescending);
 			}
+
+			if (spec.IsPagingEnabled)
+			{
+				quary = quary.Skip(spec.Skip).Take(spec.Take);
+			}
 			
 			quary = spec.Includes.Aggregate(quary, (current, include) => current.Include(include));
 			return quary;
