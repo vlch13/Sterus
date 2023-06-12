@@ -4,7 +4,9 @@ namespace Core.Specifications
 {
 	public class ProductsWithCompaniesSpecification : BaseSpecification<Product>
 	{
-		public ProductsWithCompaniesSpecification(string sort)
+		public ProductsWithCompaniesSpecification(string sort, int? companyId)
+		: base (x =>
+			(!companyId.HasValue || x.ProductCompanyId == companyId))
 		{
 			AddInclude(x => x.ProductCompany);
 			AddOrderBy(x => x.ProductCompany);
