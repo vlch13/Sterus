@@ -16,6 +16,16 @@ namespace Infrastructure.Data
 				quary = quary.Where(spec.Criteria);
 			}
 			
+			if (spec.OrderBy != null)
+			{
+				quary = quary.OrderBy(spec.OrderBy);
+			}
+
+			if (spec.OrderByDescending != null)
+			{
+				quary = quary.OrderByDescending(spec.OrderByDescending);
+			}
+			
 			quary = spec.Includes.Aggregate(quary, (current, include) => current.Include(include));
 			return quary;
 		}
