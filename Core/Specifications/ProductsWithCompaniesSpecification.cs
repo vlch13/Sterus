@@ -5,7 +5,11 @@ namespace Core.Specifications
 	public class ProductsWithCompaniesSpecification : BaseSpecification<Product>
 	{
 		public ProductsWithCompaniesSpecification(ProductSpecParams productParams)
-		: base (x =>
+		: base(x =>
+			// (string.IsNullOrEmpty(productParams.Search) || x.Name.ToLower().Contains      //поиск по наименованию  - работает
+			// (productParams.Search)) &&
+			(string.IsNullOrEmpty(productParams.Search) || x.ProductCompany.Name.ToLower().Contains
+			(productParams.Search)) &&
 			(!productParams.CompanyId.HasValue || x.ProductCompanyId == productParams.CompanyId))
 		{
 			AddInclude(x => x.ProductCompany);
