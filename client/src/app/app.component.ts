@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Product } from './models/product';
-import { Pagination } from './models/pagination';
+import { Product } from './shared/models/product';
+import { Pagination } from './shared/models/pagination';
 
 @Component({
   selector: 'app-root',
@@ -12,16 +12,9 @@ export class AppComponent implements OnInit {
 	title = 'Sterus';
 	products: Product[] = [];
 
-	constructor(private http: HttpClient) { }
+	constructor() { }
 
 	ngOnInit(): void {
-		this.http.get<Pagination<Product[]>>('https://localhost:5005/api/products?pageSize=50').subscribe({
-			next: response => this.products = response.data, //what ot do next
-			error: error => console.log(error), //what to do of error
-			complete: () => {
-				console.log('Request completed');
-				console.log('Extra statment');
-			}
-		})
+
 	}
 }
