@@ -4,7 +4,7 @@ import { ListComponent } from './list.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { RouterModule } from '@angular/router';
+import { ListRoutingModule } from './list-routing.module';
 
 
 
@@ -17,10 +17,7 @@ import { RouterModule } from '@angular/router';
 	imports: [
 		CommonModule,
 		SharedModule,
-		RouterModule
-	],
-	exports: [
-		ListComponent
+		ListRoutingModule
 	]
 })
 export class ListModule { }
