@@ -6,14 +6,12 @@ namespace Core.Specifications
 	{
 		public ProductsWithCompaniesSpecification(ProductSpecParams productParams)
 		: base(x =>
-			// (string.IsNullOrEmpty(productParams.Search) || x.Name.ToLower().Contains      //поиск по наименованию  - работает
-			// (productParams.Search)) &&
 			(string.IsNullOrEmpty(productParams.Search) || x.ProductCompany.Name.ToLower().Contains
 			(productParams.Search)) &&
 			(!productParams.CompanyId.HasValue || x.ProductCompanyId == productParams.CompanyId))
 		{
 			AddInclude(x => x.ProductCompany);
-			AddOrderBy(x => x.ProductCompany);
+			AddOrderBy(x => x.ProductCompany.Name);
 			ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1),
 			productParams.PageSize);
 
@@ -28,7 +26,7 @@ namespace Core.Specifications
 						AddOrderByDescending(p => p.Price);
 						break;
 					default:
-						AddOrderBy(n => n.ProductCompany);
+						AddOrderBy(n => n.ProductCompany.Name);
 						break;
 				}
 			}

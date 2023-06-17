@@ -1,5 +1,35 @@
-<ul>
-	<li class="list-unstyled" *ngFor="let product of products">
-		{{product.productCompany}}
-	</li>
-</ul>
+<section class="col-12">
+	<div class="d-flex justify-content-between align-items-center pb-2">
+		<header>
+			<span>Показано <strong>20</strong> из <strong>200</strong></span>
+		</header>
+		<div class="d-flex mt-2">
+			<input type="text" placeholder="Поиск" class="form-control me-2">
+			<button class="btn btn-outline-primary mx-2">Искать</button>
+			<button class="btn btn-outline-success">Сброс</button>
+		</div>
+	</div>
+</section>
+<table class="table table-hover table-bordered">
+	<thead class="thead-dark" style="border-left: 1px solid lightgrey; border-right: 1px solid lightgrey">
+		<tr class="flex-container">
+			<div style="flex-basis: 150px;"><strong>Компания</strong></div>
+			<div style="flex-basis: 200px;"><strong>Наименование</strong></div>
+			<div style="flex-basis: 80px;" class="text-center"><strong>Длина</strong></div>
+			<div style="flex-basis: 80px;" class="text-center"><strong>Высота</strong></div>
+			<div style="flex-basis: 80px;" class="text-center"><strong>Ширина</strong></div>
+			<div style="flex-basis: 80px;" class="text-center"><strong>Вес</strong></div>
+			<div style="flex-basis: 80px;" class="text-center"><strong>Доза</strong></div>
+			<div style="flex-basis: 100px;" class="text-center"><strong>Контроль</strong></div>
+			<div style="flex-basis: 100px;"><strong>Скорость</strong></div>
+			<div style="flex-basis: 80px;"><strong>Мед.изд</strong></div>
+			<div style="flex-basis: 80px;"><strong>Стоимость</strong></div>
+			<!-- <div style="flex-basis: 80px;">Заметки</div> -->
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let product of products">
+			<td colspan="12"><app-product-item [product]="product"></app-product-item></td>
+		</tr>
+	</tbody>
+</table>

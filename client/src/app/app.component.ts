@@ -1,7 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Product } from './shared/models/product';
-import { Pagination } from './shared/models/pagination';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +7,9 @@ import { Pagination } from './shared/models/pagination';
 })
 export class AppComponent implements OnInit {
 	title = 'Sterus';
-	products: Product[] = [];
 
 	constructor() { }
 
 	ngOnInit(): void {
-
 	}
 }

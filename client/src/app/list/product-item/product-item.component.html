@@ -1,0 +1,21 @@
+<div class="flex-container" *ngIf="product">
+	<div style="flex-basis: 150px;">{{product.productCompany}}</div>
+	<div style="flex-basis: 200px;">{{product.name}}</div>
+	<div style="flex-basis: 80px;" class="text-center">{{product.boxLenght}} см</div>
+	<div style="flex-basis: 80px;" class="text-center">{{product.boxHeight}} см</div>
+	<div style="flex-basis: 80px;" class="text-center">{{product.boxWidth}} см</div>
+	<div style="flex-basis: 80px;" class="text-center">{{product.boxWeight}} кг</div>
+	<div style="flex-basis: 80px;" class="text-center">{{product.dose}} кГр</div>
+	<div style="flex-basis: 100px;" class="text-center">{{product.doseControl}} кГр</div>
+	<div style="flex-basis: 100px;" class="text-center">{{product.speed}} см/мин</div>
+	<div style="flex-basis: 80px;" class="text-center">
+		<span *ngIf="product.isMedical">Да</span>
+		<span *ngIf="!product.isMedical">Нет</span>
+	</div>
+	<div style="flex-basis: 80px;" class="text-center">{{product.price}} руб.</div>
+	<!-- <div style="flex-basis: 80px;" class="text-center">{{product.note}}</div> -->
+	<div class="btn-group ms-5">
+		<button class="btn btn-outline-secondary">Изм</button>
+		<button class="btn btn-outline-secondary">Задание</button>
+	</div>
+</div>

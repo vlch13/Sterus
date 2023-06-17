@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'
 import { CoreModule } from './core/core.module';
-import { ListComponent } from './list/list.component';
 import { ListModule } from './list/list.module';
 
 @NgModule({
