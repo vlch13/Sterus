@@ -23,4 +23,8 @@ export class ListService {
 		// return this.http.get<Pagination<Product[]>>(this.baseUrl + 'products?pageSize=15'); 94.98
 		return this.http.get<Pagination<Product[]>>(this.baseUrl + 'products', {params: params});
 	}
+
+	getProduct(id: number) {
+		return this.http.get<Product>(this.baseUrl + 'products/' + id);
+	}
 }

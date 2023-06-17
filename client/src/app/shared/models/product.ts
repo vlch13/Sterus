@@ -1,4 +1,5 @@
 export interface Product {
+	id: string
 	productCompany: string
 	name: string
 	boxLenght: number
