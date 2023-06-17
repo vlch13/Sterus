@@ -1,8 +1,7 @@
 <section class="col-12">
 	<div class="d-flex justify-content-between align-items-center pb-2">
-		<header>
-			<span>Показано <strong>20</strong> из <strong>200</strong></span>
-		</header>
+		<app-paging-header [totalCount]="totalCount" [pageNumber]="listParams.pageNumber"
+			[pageSize]="listParams.pageSize"></app-paging-header>
 		<div class="d-flex mt-2">
 			<input type="text" placeholder="Поиск" class="form-control me-2">
 			<button class="btn btn-outline-primary mx-2">Искать</button>
@@ -32,4 +31,11 @@
 			<td colspan="12"><app-product-item [product]="product"></app-product-item></td>
 		</tr>
 	</tbody>
+	<div class="d-flex justify-content-center mt-3">
+		<app-pager
+			[totalCount]="totalCount"
+			[pageSize]="listParams.pageSize"
+			(pageChanged)="onPageChanged($event)">
+		</app-pager>
+	</div>
 </table>
