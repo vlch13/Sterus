@@ -18,6 +18,7 @@ export class ListService {
 		params = params.append('sort', listParams.sort)
 		params = params.append('pageIndex', listParams.pageNumber)
 		params = params.append('pageSize', listParams.pageSize)
+		if (listParams.search) params = params.append('search', listParams.search)
 		
 		// return this.http.get<Pagination<Product[]>>(this.baseUrl + 'products?pageSize=15'); 94.98
 		return this.http.get<Pagination<Product[]>>(this.baseUrl + 'products', {params: params});

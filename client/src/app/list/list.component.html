@@ -1,13 +1,18 @@
 <section class="col-12">
 	<div class="d-flex justify-content-between align-items-center pb-2">
-		<app-paging-header [totalCount]="totalCount" [pageNumber]="listParams.pageNumber"
-			[pageSize]="listParams.pageSize"></app-paging-header>
+		<app-paging-header
+			[totalCount]="totalCount"
+			[pageNumber]="listParams.pageNumber"
+			[pageSize]="listParams.pageSize">
+		</app-paging-header>
+
 		<div class="d-flex mt-2">
-			<input type="text" placeholder="Поиск" class="form-control me-2">
-			<button class="btn btn-outline-primary mx-2">Искать</button>
-			<button class="btn btn-outline-success">Сброс</button>
+			<input (keyup.enter)="onSearch()" type="text" placeholder="Поиск" class="form-control me-2" #search>
+			<button (click)="onSearch()" class="btn btn-outline-primary mx-2">Найти</button>
+			<button (click)="onReset()" class="btn btn-outline-success">Очистить</button>
 		</div>
 	</div>
+
 </section>
 <table class="table table-hover table-bordered">
 	<thead class="thead-dark" style="border-left: 1px solid lightgrey; border-right: 1px solid lightgrey">

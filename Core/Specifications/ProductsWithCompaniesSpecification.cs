@@ -6,9 +6,16 @@ namespace Core.Specifications
 	{
 		public ProductsWithCompaniesSpecification(ProductSpecParams productParams)
 		: base(x =>
-			(string.IsNullOrEmpty(productParams.Search) || x.ProductCompany.Name.ToLower().Contains
-			(productParams.Search)) &&
+			((string.IsNullOrEmpty(productParams.Search)
+				|| x.ProductCompany.Name.ToLower().Contains
+			(productParams.Search)) ||
+			(string.IsNullOrEmpty(productParams.Search)
+				|| x.Name.ToLower().Contains
+			(productParams.Search))) &&
 			(!productParams.CompanyId.HasValue || x.ProductCompanyId == productParams.CompanyId))
+
+			// (string.IsNullOrEmpty(productParams.Search) || x.ProductCompany.Name.ToLower().Contains(productParams.Search)) &&
+			// (!productParams.CompanyId.HasValue || x.ProductCompanyId == productParams.CompanyId)
 		{
 			AddInclude(x => x.ProductCompany);
 			AddOrderBy(x => x.ProductCompany.Name);
@@ -32,7 +39,7 @@ namespace Core.Specifications
 			}
 		}
 
-			public ProductsWithCompaniesSpecification(int id) : base(x => x.Id == id)
+		public ProductsWithCompaniesSpecification(int id) : base(x => x.Id == id)
 		{
 			AddInclude(x => x.ProductCompany);
 		}

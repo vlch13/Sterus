@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../shared/models/product';
 import { ListService } from './list.service';
 import { ListParams } from '../shared/models/listParams';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+	selector: 'app-list',
+	templateUrl: './list.component.html',
+	styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+	@ViewChild('search') searchTerm?: ElementRef;
 	products: Product[] = [];
 	listParams = new ListParams();
 	sortOptions = [
@@ -44,4 +45,15 @@ export class ListComponent implements OnInit {
 		}
 	}
 
+	onSearch() {
+		this.listParams.search = this.searchTerm?.nativeElement.value;
+		this.getProducts();
+	}
+
+	onReset() {
+		if (this.searchTerm) this.searchTerm.nativeElement.value = '';
+		this.listParams = new ListParams();
+		this.getProducts();
+
+	}
 }
