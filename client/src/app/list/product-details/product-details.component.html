@@ -1,4 +1,27 @@
-<div *ngIf="product">
-	<h1>{{product.productCompany}}</h1>
-</div>
+<div class="row" *ngIf="product">
+	<div class="col-3"></div>
 
+	<div class="col-6">
+		<h2>Организация: {{product.productCompany}}</h2>
+		<h2>Наименование: {{product.name}}</h2>
+		<h5>Размеры коробки: {{product.boxLenght}} см х {{product.boxHeight}} см х {{product.boxWidth}} см</h5>
+		<h5>Вес коробки: {{product.boxWeight}} кг</h5>
+		<h5>Доза облучения: {{product.dose}} кГр</h5>
+		<h5>Контрольная доза: {{product.doseControl}} кГр</h5>
+		<h5>Скорость обработки: {{product.speed}} см/мин</h5>
+		<h5>Медицинское изделие:
+			<span *ngIf="product.isMedical == true">Да</span>
+			<span *ngIf="product.isMedical == false">нет</span>
+		</h5>
+		<h5>Цена обработки: {{product.price}} руб.</h5>
+		<div class="d-flex justify-content-start align-items-center">
+			<i class="fa fa-minus-circle text-warning me-2" style="cursor: pointer; font-size: 2em;"></i>
+			<span class="font-weight-bold" style="font-size: 1.5em;">2</span>
+			<i class="fa fa-plus-circle text-warning ms-2" style="cursor: pointer; font-size: 2em;"></i>
+			<button class="btn btn-outline-secondary ms-4">В задание</button>
+			<button class="btn btn-outline-secondary ms-2">Редактировать</button>
+		</div>
+	</div>
+
+	<div class="col-3"></div>
+</div>
