@@ -16,7 +16,7 @@ export interface Task {
 	items: TaskItem[]
 }
 
-export class Basket implements Basket {
+export class Task implements Task {
 	id = cuid();
 	items: TaskItem[] = [];
 }
