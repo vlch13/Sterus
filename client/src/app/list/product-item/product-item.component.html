@@ -15,7 +15,11 @@
 	<div style="flex-basis: 80px;" class="text-center">{{product.price}} руб.</div>
 	<!-- <div style="flex-basis: 80px;" class="text-center">{{product.note}}</div> -->
 	<div class="btn-group ms-5">
-		<button routerLink="/list/{{product.id}}" class="btn btn-outline-secondary ">Изм</button>
-		<button class="btn btn-outline-secondary">Задание</button>
+		<button routerLink="/list/{{product.id}}" class="btn btn-outline-secondary me-2">
+			<i class="fa fa-pencil" aria-hidden="true"></i>
+		</button>
+		<button class="btn btn-outline-secondary">
+			<i class="fa fa-list-ol" aria-hidden="true"></i>
+		</button>
 	</div>
 </div>
