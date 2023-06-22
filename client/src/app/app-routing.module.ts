@@ -11,6 +11,7 @@ const routes: Routes = [
 	{ path: 'not-found', component: NotFoundComponent },
 	{ path: 'server-error', component: ServerErrorComponent },
 	{ path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListModule) },
+	{ path: 'task', loadChildren: () => import('./task/task.module').then(m => m.TaskModule) },
 	{ path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
