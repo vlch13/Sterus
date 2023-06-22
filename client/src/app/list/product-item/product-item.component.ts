@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
+import { TaskService } from 'src/app/task/task.service';
 
 @Component({
   selector: 'app-product-item',
@@ -8,4 +9,10 @@ import { Product } from 'src/app/shared/models/product';
 })
 export class ProductItemComponent {
 	@Input() product?: Product;
+
+	constructor(private taskService: TaskService) { }
+
+	addItemToTask() {
+		this.product && this.taskService.addItemToTask(this.product)
+	}
 }

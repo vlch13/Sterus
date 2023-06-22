@@ -18,7 +18,7 @@
 		<button routerLink="/list/{{product.id}}" class="btn btn-outline-secondary me-2">
 			<i class="fa fa-pencil" aria-hidden="true"></i>
 		</button>
-		<button class="btn btn-outline-secondary">
+		<button (click)="addItemToTask()" class="btn btn-outline-secondary">
 			<i class="fa fa-list-ol" aria-hidden="true"></i>
 		</button>
 	</div>
