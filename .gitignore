@@ -478,3 +478,6 @@ $RECYCLE.BIN/
 API/appsettings.json
 API/sterus.db-wal
 API/sterus.db-shm
+API/identity.db-shm
+API/identity.db-wal
+API/identity.db
