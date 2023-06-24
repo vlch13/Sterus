@@ -10,6 +10,8 @@ namespace API.Helpers
 		{
 			CreateMap<Product, ProductToReturnDto>()
 			.ForMember(d => d.ProductCompany, o => o.MapFrom(s => s.ProductCompany.Name));
+			CreateMap<ShiftTaskDto, ShiftTask>();
+			CreateMap<TaskItemDto, TaskItem>();
 		}
 	}
 }

@@ -1,3 +1,5 @@
+using API.Dtos;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -7,8 +9,10 @@ namespace API.Controllers
 	public class TaskController : BaseApiController
 	{
 		private readonly ITaskRepository _taskRepository;
-		public TaskController(ITaskRepository taskRepository)
+		private readonly IMapper _mapper;
+		public TaskController(ITaskRepository taskRepository, IMapper mapper)
 		{
+			_mapper = mapper;
 			_taskRepository = taskRepository;
 		}
 
@@ -21,9 +25,11 @@ namespace API.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<ShiftTask>> UpdateTask(ShiftTask task)
+		public async Task<ActionResult<ShiftTask>> UpdateTask(ShiftTaskDto task)
 		{
-			var updatedTask = await _taskRepository.UpdateTaskAsync(task);
+			var shiftTask = _mapper.Map<ShiftTaskDto, ShiftTask>(task);
+
+			var updatedTask = await _taskRepository.UpdateTaskAsync(shiftTask);
 
 			return Ok(updatedTask);
 		}

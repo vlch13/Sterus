@@ -58,6 +58,14 @@ namespace API.Controllers
 		[HttpPost("register")]
 		public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
 		{
+			if (CheckUserExistsAsync(registerDto.Name).Result.Value)
+			{
+				return new BadRequestObjectResult(new ApiValidationErrorResponse
+				{
+					Errors = new[] { "Имя пользователя уже использутеся" }
+				});
+			}
+			
 			var user = new AppUser
 			{
 				UserName = registerDto.Name,
