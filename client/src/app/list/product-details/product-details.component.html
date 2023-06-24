@@ -1,27 +1,125 @@
 <div class="row" *ngIf="product">
-	<div class="col-3"></div>
+	<div class="col-2"></div>
 
-	<div class="col-6">
-		<h2>Организация: {{product.productCompany}}</h2>
-		<h2>Наименование: {{product.name}}</h2>
-		<h5>Размеры коробки: {{product.boxLenght}} см х {{product.boxHeight}} см х {{product.boxWidth}} см</h5>
-		<h5>Вес коробки: {{product.boxWeight}} кг</h5>
-		<h5>Доза облучения: {{product.dose}} кГр</h5>
-		<h5>Контрольная доза: {{product.doseControl}} кГр</h5>
-		<h5>Скорость обработки: {{product.speed}} см/мин</h5>
-		<h5>Медицинское изделие:
-			<span *ngIf="product.isMedical == true">Да</span>
-			<span *ngIf="product.isMedical == false">нет</span>
-		</h5>
-		<h5>Цена обработки: {{product.price}} руб.</h5>
-		<div class="d-flex justify-content-start align-items-center">
-			<i class="fa fa-minus-circle text-warning me-2" style="cursor: pointer; font-size: 2em;"></i>
-			<span class="font-weight-bold" style="font-size: 1.5em;">2</span>
-			<i class="fa fa-plus-circle text-warning ms-2" style="cursor: pointer; font-size: 2em;"></i>
-			<button class="btn btn-outline-secondary ms-4">В задание</button>
-			<button class="btn btn-outline-secondary ms-2">Редактировать</button>
+	<div class="col-8">
+		<table class="table mb-3">
+			<tr>
+				<td>
+					<h1>Организация</h1>
+				</td>
+				<td>
+					<h1>{{product.productCompany}}</h1>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h2>Наименование</h2>
+				</td>
+				<td>
+					<h2>{{product.name}}</h2>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h4>Длина коробки</h4>
+				</td>
+				<td>
+					<h4>{{product.boxLenght}} см</h4>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h4>Высота коробки</h4>
+				</td>
+				<td>
+					<h4>{{product.boxHeight}} см</h4>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h4>Ширина коробки</h4>
+				</td>
+				<td>
+					<h4>{{product.boxWidth}} см</h4>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h4>Вес коробки</h4>
+				</td>
+				<td>
+					<h4>{{product.boxWeight}} кг</h4>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h4>Доза облучения</h4>
+				</td>
+				<td>
+					<h4>{{product.dose}} кГр</h4>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h4>Контрольная доза</h4>
+				</td>
+				<td>
+					<h4>{{product.doseControl}} кГр</h4>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h4>Скорость обработки</h4>
+				</td>
+				<td>
+					<h4>{{product.speed}} см/мин</h4>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h4>Медицинское изделие</h4>
+				</td>
+				<td>
+					<h4 *ngIf="product.isMedical">Да</h4>
+					<h4 *ngIf="!product.isMedical">Нет</h4>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h4>Цена обработки</h4>
+				</td>
+				<td>
+					<h4>{{product.price}} руб.</h4>
+				</td>
+			</tr>
+		</table>
+
+		<div class="d-flex justify-content-start align-items-center ms-4">
+			<i
+				(click)="decrementQuantity(1)"
+				class="fa fa-minus-circle text-danger me-2" style="cursor: pointer; font-size: 1.5em;">
+			</i>
+			<i
+				(click)="decrementQuantity(10)"
+				class="fa fa-minus-circle text-danger me-2" style="cursor: pointer; font-size: 2em;">
+			</i>
+
+			<span class="font-weight-bold" style="font-size: 1.5em;">{{quantity}}</span>
+
+			<i
+				(click)="incrementQuantity(10)"
+				class="fa fa-plus-circle text-success ms-2" style="cursor: pointer; font-size: 2em;">
+			</i>
+			<i
+				(click)="incrementQuantity(1)"
+				class="fa fa-plus-circle text-success ms-2" style="cursor: pointer; font-size: 1.5em;">
+			</i>
+			<button class="btn btn-outline-success ms-4"
+				(click)="updateTask()"
+				[disabled]="quantity == quantityInTask">{{buttonText}}</button>
+			<button class="btn btn-outline-primary ms-2">Редактировать</button>
 		</div>
 	</div>
 
-	<div class="col-3"></div>
+	<div class="col-2"></div>
 </div>

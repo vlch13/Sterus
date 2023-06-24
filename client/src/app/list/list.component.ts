@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../shared/models/product';
 import { ListService } from './list.service';
 import { ListParams } from '../shared/models/listParams';
+import { TaskService } from '../task/task.service';
 
 @Component({
 	selector: 'app-list',
@@ -19,7 +20,9 @@ export class ListComponent implements OnInit {
 	]
 	totalCount = 0;
 
-	constructor(private listService: ListService) { }
+	// @Input() product?: Product /////////
+
+	constructor(private listService: ListService, private taskService: TaskService) { }
 
 	ngOnInit(): void {
 		this.getProducts();
@@ -56,4 +59,8 @@ export class ListComponent implements OnInit {
 		this.getProducts();
 
 	}
+
+	// addItemToTask() { ////// нужно достать конкретный product
+	// 	this.product && this.taskService.addItemToTask(this.product)
+	// }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskService } from './task/task.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 	title = 'Sterus';
 
-	constructor() { }
+	constructor(private taskService: TaskService) { }
 
 	ngOnInit(): void {
+		const taskId = localStorage.getItem('task_id');
+		if (taskId) this.taskService.getTask(taskId);
 	}
 }

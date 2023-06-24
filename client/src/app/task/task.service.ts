@@ -31,11 +31,36 @@ export class TaskService {
 		return this.taskSource.value;
 	}
 
-	addItemToTask(item: Product, quantity = 1) {
-		const itemToAdd = this.mapProductItemToTaskItem(item);
+	addItemToTask(item: Product | TaskItem, quantity = 1) {
+		// const itemToAdd = this.mapProductItemToTaskItem(item);
+		if (this.isProduct(item)) item = this.mapProductItemToTaskItem(item);
 		const task = this.getCurrentTaskValue() ?? this.createTask();
-		task.items = this.addOrUpdateItem(task.items, itemToAdd, quantity);
+		// task.items = this.addOrUpdateItem(task.items, itemToAdd, quantity);
+		task.items = this.addOrUpdateItem(task.items, item, quantity);
 		this.setTask(task);
+	}
+
+	removeItemFromTask(id: number, quantity = 1) {
+		const task = this.getCurrentTaskValue();
+		if (!task) return;
+		const item = task.items.find(x => x.id === id);
+		if (item) {
+			item.quantity -= quantity;
+			if (item.quantity <= 0) {
+				task.items = task.items.filter(x => x.id !== id);
+			}
+			if (task.items.length > 0) this.setTask(task);
+			else this.deleteTask(task);
+		}
+	}
+
+	deleteTask(task: Task) {
+		return this.http.delete(this.baseUrl + 'task?id=' + task.id).subscribe({
+			next: () => {
+				this.taskSource.next(null);
+				localStorage.removeItem('task_id');
+			}
+		})
 	}
 
 	private addOrUpdateItem(items: TaskItem[], itemToAdd: TaskItem, quantity: number): TaskItem[] {
@@ -64,7 +89,11 @@ export class TaskService {
 			isMedical: item.isMedical,
 			quantity: 0,
 			price: item.price
-			
+
 		}
+	}
+
+	private isProduct(item: Product | TaskItem): item is Product { //156
+		return (item as Product).productCompany !== undefined;
 	}
 }

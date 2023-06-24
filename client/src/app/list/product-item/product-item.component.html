@@ -1,4 +1,4 @@
-<div class="flex-container" *ngIf="product">
+<!-- <div class="flex-container" *ngIf="product">
 	<div style="flex-basis: 150px;">{{product.productCompany}}</div>
 	<div style="flex-basis: 200px;">{{product.name}}</div>
 	<div style="flex-basis: 80px;" class="text-center">{{product.boxLenght}} см</div>
@@ -12,9 +12,9 @@
 		<span *ngIf="product.isMedical">Да</span>
 		<span *ngIf="!product.isMedical">Нет</span>
 	</div>
-	<div style="flex-basis: 80px;" class="text-center">{{product.price}} руб.</div>
-	<!-- <div style="flex-basis: 80px;" class="text-center">{{product.note}}</div> -->
-	<div class="btn-group ms-5">
+	<div style="flex-basis: 80px;" class="text-center">{{product.price}} руб.</div> -->
+<!-- <div style="flex-basis: 80px;" class="text-center">{{product.note}}</div> -->
+<!-- <div class="btn-group ms-5">
 		<button routerLink="/list/{{product.id}}" class="btn btn-outline-secondary me-2">
 			<i class="fa fa-pencil" aria-hidden="true"></i>
 		</button>
@@ -22,4 +22,58 @@
 			<i class="fa fa-list-ol" aria-hidden="true"></i>
 		</button>
 	</div>
-</div>
+</div> -->
+
+<table class="table pd-0 mb-0" *ngIf="product">
+	<!-- <tr *ngIf="product" class="colspan-12"> -->
+	<tr>
+		<!-- <th> -->
+		<td>
+			<div class="p-2 p-inline-block">
+				<div class="ms-3 d-inline-block">
+					<h5 class="mb-0">
+						<a class="text-dark text-decoration-none">
+							{{product.productCompany}}
+						</a>
+					</h5>
+					<span class="text-muted fst-italic">
+						{{product.name}}
+					</span>
+				</div>
+			</div>
+			<!-- </th> -->
+		</td>
+		<td class="align-middle">
+			{{product.boxLenght}} x {{product.boxHeight}} x {{product.boxWidth}} см
+		</td>
+		<td class="align-middle">{{product.boxWeight}} кг</td>
+		<td class="align-middle">{{product.dose}} кГр</td>
+		<td class="align-middle">{{product.doseControl}} кГр</td>
+		<td class="align-middle">{{product.speed}} см/мин</td>
+		<td class="align-middle">
+			<span *ngIf="product.isMedical">Да</span>
+			<span *ngIf="!product.isMedical">Нет</span>
+		</td>
+		<td class="align-middle">{{product.price}} руб</td>
+
+
+		<td class="align-middle">
+			<div class="d-flex align-items-center">
+				<form action="">
+					<input type="text" id="fname" name="fname" style="width: 40px;">
+				</form>
+			</div>
+		</td>
+		<td class="align-middle">
+			<button (click)="addItemToTask()" class="btn btn-outline-secondary">
+				<i class="fa fa-list-ol" aria-hidden="true"></i>
+			</button>
+		</td>
+		<td class="align-middle">
+			<button routerLink="/list/{{product.id}}" class="btn btn-outline-secondary me-2">
+				<i class="fa fa-pencil" aria-hidden="true"></i>
+			</button>
+		</td>
+	</tr>
+</table>
+<!-- </tr> -->
