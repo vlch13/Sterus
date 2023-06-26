@@ -102,15 +102,16 @@ export class TaskService {
 		}
 	}
 
-	private calculateTotals() { //153
+	private calculateTotals() { 
 		const task = this.getCurrentTaskValue();
 		if (!task) return;
 		const total = task.items.reduce((a, b) => (b.price * b.quantity) + a, 0);
-		const time = task.items.reduce((a, b) => ((0.04404 / b.speed) * b.quantity) + a, 1).toFixed(1);
+		var timestr = task.items.reduce((a, b) => ((0.04404 / b.speed) * b.quantity) + a, 1).toFixed(1);
+		const time: number = +timestr;
 		this.taskTotalSource.next({ total, time });
 	}
 
-	private isProduct(item: Product | TaskItem): item is Product { //156
+	private isProduct(item: Product | TaskItem): item is Product { 
 		return (item as Product).productCompany !== undefined;
 	}
 }

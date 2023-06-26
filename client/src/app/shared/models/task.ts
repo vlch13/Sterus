@@ -22,6 +22,6 @@ export class Task implements Task {
 }
 
 export interface TaskTotals {
-	time: string;
+	time: number;
 	total: number;
 }
