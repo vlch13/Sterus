@@ -20,3 +20,8 @@ export class Task implements Task {
 	id = cuid();
 	items: TaskItem[] = [];
 }
+
+export interface TaskTotals {
+	time: string;
+	total: number;
+}

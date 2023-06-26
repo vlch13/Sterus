@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from 'src/app/account/account.service';
 import { TaskService } from 'src/app/task/task.service';
 
 @Component({
@@ -8,6 +9,6 @@ import { TaskService } from 'src/app/task/task.service';
 })
 export class NavBarComponent {
 
-	constructor(public taskService: TaskService) { }
+	constructor(public taskService: TaskService, public accountService: AccountService) { }
 
 }

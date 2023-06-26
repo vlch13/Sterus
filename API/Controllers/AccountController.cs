@@ -62,7 +62,7 @@ namespace API.Controllers
 			{
 				return new BadRequestObjectResult(new ApiValidationErrorResponse
 				{
-					Errors = new[] { "Имя пользователя уже использутеся" }
+					Errors = new[] { "Имя пользователя занято" }
 				});
 			}
 			

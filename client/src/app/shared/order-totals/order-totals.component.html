@@ -1,0 +1,16 @@
+<div class="bg-light px-4 py-3 text-uppercase fw-bold">
+	Сводка
+</div>
+
+<div class="p-4">
+	<ul class="list-unstyled mb-4" *ngIf="(taskService.taskTotalSource$ | async) as totals">
+		<li class="d-flex justify-content-between py-3 border-bottom">
+			<strong class="text-muted">Время обработки</strong>
+			<strong>{{totals.time}} ч.</strong>
+		</li>
+		<li class="d-flex justify-content-between py-3 border-bottom">
+			<strong class="text-muted">Стоимость обработки</strong>
+			<strong>{{totals.total}} руб.</strong>
+		</li>
+	</ul>
+</div>

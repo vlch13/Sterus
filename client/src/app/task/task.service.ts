@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Task, TaskItem } from '../shared/models/task';
+import { Task, TaskItem, TaskTotals } from '../shared/models/task';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../shared/models/product';
 
@@ -12,18 +12,27 @@ export class TaskService {
 	baseUrl = environment.apiUrl;
 	private taskSource = new BehaviorSubject<Task | null>(null);
 	taskSource$ = this.taskSource.asObservable();
+	private taskTotalSource = new BehaviorSubject<TaskTotals | null>(null); //153
+	taskTotalSource$ = this.taskTotalSource.asObservable(); //153
 
 	constructor(private http: HttpClient) { }
 
 	getTask(id: string) {
 		return this.http.get<Task>(this.baseUrl + 'task?id=' + id).subscribe({
-			next: task => this.taskSource.next(task)
+			next: task => {
+				this.taskSource.next(task);
+				this.calculateTotals();
+			}
 		});
 	}
 
 	setTask(task: Task) {
 		return this.http.post<Task>(this.baseUrl + 'task', task).subscribe({
-			next: task => this.taskSource.next(task)
+			// next: task => this.taskSource.next(task)
+			next: task => {
+				this.taskSource.next(task);
+				this.calculateTotals();
+			}
 		});
 	}
 
@@ -91,6 +100,14 @@ export class TaskService {
 			price: item.price
 
 		}
+	}
+
+	private calculateTotals() { //153
+		const task = this.getCurrentTaskValue();
+		if (!task) return;
+		const total = task.items.reduce((a, b) => (b.price * b.quantity) + a, 0);
+		const time = task.items.reduce((a, b) => ((0.04404 / b.speed) * b.quantity) + a, 1).toFixed(1);
+		this.taskTotalSource.next({ total, time });
 	}
 
 	private isProduct(item: Product | TaskItem): item is Product { //156
