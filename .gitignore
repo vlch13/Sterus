@@ -476,6 +476,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 API/appsettings.json
+API/sterus.db
 API/sterus.db-wal
 API/sterus.db-shm
 API/identity.db-shm
